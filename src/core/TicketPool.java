@@ -28,6 +28,24 @@ public class TicketPool {
         this.ticketQueue.add(ticket);
         notifyAll();
         System.out.println(Thread.currentThread().getName() + ": Ticket added: " + ticketQueue.size());
+    }
 
+    /*
+    getTicket method used by Customers to buy tickets
+     */
+    public synchronized Ticket getTicket() {
+        while (ticketQueue.size() == 0) {
+            try{
+                wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+        }
+
+        Ticket ticket = ticketQueue.poll();
+        notifyAll();
+        System.out.println(Thread.currentThread().getName() + ": Ticket purchased : " + ticketQueue.size());
+
+        return ticket;
     }
 }
