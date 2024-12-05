@@ -7,15 +7,19 @@ public class CLI {
     public static TicketingSystemConfig configure() {
         Scanner scanner = new Scanner(System.in);
 
+        // Get total tickets from user
         System.out.println("Enter Total Tickets: ");
         int totalTickets = getValidInput(scanner);
 
+        // Get ticket release rate from user
         System.out.println("Enter Ticket Release Rate: ");
         int ticketReleaseRate = getValidInput(scanner);
 
+        // Get customer retrieval rate from user
         System.out.println("Enter Customer Retrieval Rate: ");
         int customerRetrievalRate = getValidInput(scanner);
 
+        // Get maximum ticket capacity from user
         System.out.println("Enter Max Ticket Capacity: ");
         int maxTicketCapacity = getValidInput(scanner);
 
@@ -29,7 +33,7 @@ public class CLI {
         while (true) {
             if (!scanner.hasNextInt()) {
                 System.out.println("Invalid input. Please enter a valid number.");
-                scanner.next();
+                scanner.next(); // Clear invalid input
                 continue;
             }
 
@@ -37,7 +41,7 @@ public class CLI {
             if (input < 0){
                 System.out.println("Please enter a positive number.");
             } else {
-                break;
+                break; // Exit the loop if the input is valid and positive
             }
         }
         return input;
