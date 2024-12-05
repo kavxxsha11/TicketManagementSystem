@@ -3,9 +3,9 @@ package core;
 public class Ticket {
     private int ticketId;
     private String title;
-    private int price;
+    private double price;
 
-    public Ticket(int ticketId, String title, int price) {
+    public Ticket(int ticketId, String title, double price) {
         this.ticketId = ticketId;
         this.title = title;
         this.price = price;
@@ -19,7 +19,7 @@ public class Ticket {
         return title;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -27,7 +27,7 @@ public class Ticket {
         this.ticketId = ticketId;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
