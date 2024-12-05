@@ -1,5 +1,8 @@
+import config.TicketingSystemConfig;
+import ui.CLI;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        TicketingSystemConfig configure = CLI.configure();
     }
 }
