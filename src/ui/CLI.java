@@ -46,4 +46,24 @@ public class CLI {
         }
         return input;
     }
+
+    private static boolean isRunning = false;
+
+    public static void startSystem() {
+        if (!isRunning){
+            isRunning = true;
+            System.out.println("Starting System...");
+        } else{
+            System.out.println("System is already running.");
+        }
+    }
+
+    public static void stopSystem() {
+        if (isRunning){
+            isRunning = false;
+            System.out.println("Stopping System...");
+        } else{
+            System.out.println("System is already stopped.");
+        }
+    }
 }
