@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         TicketingSystemConfig config = CLI.configure(scanner);
-        TicketPool ticketPool = new TicketPool(config.getMaxTicketCapacity());
+        TicketPool ticketPool = new TicketPool(config.getTotalTickets());
         CLI.setTicketPool(ticketPool);
 
         try {
