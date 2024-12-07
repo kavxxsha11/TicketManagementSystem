@@ -5,9 +5,9 @@ import core.TicketPool;
 
 // Vendor class implements the Runnable interface
 public class Vendor implements Runnable {
-    private TicketPool ticketPool; // Shared ticket pool
-    private int totalTickets; // Total tickets to release
-    private int ticketReleaseRate; // Ticket releasing rate
+    private final TicketPool ticketPool; // Shared ticket pool
+    private final int totalTickets; // Total tickets to release
+    private final int ticketReleaseRate; // Ticket releasing rate
 
     // Constructor to initialize the Vendor
     public Vendor(TicketPool ticketPool, int totalTickets, int ticketReleaseRate) {
@@ -25,7 +25,9 @@ public class Vendor implements Runnable {
             try {
                 Thread.sleep(ticketReleaseRate * 1000);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e.getMessage());
+                System.out.println("Vendor thread interrupted " + e.getMessage());
+                Thread.currentThread().interrupt();
+                break;
             }
         }
     }
