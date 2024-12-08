@@ -1,38 +1,40 @@
 package core;
 
+import java.util.UUID;
+
 public class Ticket {
-    private int ticketId; // Unique identifier for the ticket
-    private int customerId;
-    private int vendorId;
+    private UUID ticketId; // Unique identifier for the ticket
+    private UUID customerId;
+    private UUID vendorId;
 
     // Constructor to initialize the Ticket object
-    public Ticket(int ticketId, int customerId, int vendorId) {
+    public Ticket(UUID ticketId, UUID customerId, UUID vendorId) {
         this.ticketId = ticketId;
         this.customerId = customerId;
         this.vendorId = vendorId;
     }
 
-    public int getTicketId() {
+    public UUID getTicketId() {
         return ticketId;
     }
 
-    public void setTicketId(int ticketId) {
+    public void setTicketId(UUID ticketId) {
         this.ticketId = ticketId;
     }
 
-    public int getCustomerId() {
+    public UUID getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(UUID customerId) {
         this.customerId = customerId;
     }
 
-    public int getVendorId() {
+    public UUID getVendorId() {
         return vendorId;
     }
 
-    public void setVendorId(int vendorId) {
+    public void setVendorId(UUID vendorId) {
         this.vendorId = vendorId;
     }
 
