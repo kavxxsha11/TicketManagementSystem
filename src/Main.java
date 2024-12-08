@@ -27,7 +27,7 @@ public class Main {
                         System.out.println("Exiting System...");
                         return;
                     default:
-                        System.out.println("Invalid command. Please type 'start', 'stop', or 'exit'.");
+                        System.out.println("Invalid command. \nPlease type 'start', 'stop', or 'exit'.");
                 }
             }
         } finally {
