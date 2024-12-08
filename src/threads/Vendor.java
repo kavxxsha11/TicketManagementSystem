@@ -3,6 +3,7 @@ package threads;
 import core.Ticket;
 import core.TicketPool;
 
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,7 +14,7 @@ public class Vendor implements Runnable {
     private int totalTickets; // Total tickets to release
     private int ticketReleaseRate; // Ticket releasing rate
     private String vendorName;
-    private int vendorId;
+    private UUID vendorId;
 
     // Constructor to initialize the Vendor
     public Vendor(TicketPool ticketPool, int totalTickets, int ticketReleaseRate) {
@@ -21,7 +22,7 @@ public class Vendor implements Runnable {
         this.totalTickets = totalTickets; // Set total tickets
         this.ticketReleaseRate = ticketReleaseRate; // Set release rate
         this.vendorName = Thread.currentThread().getName();
-        this.vendorId = 1;
+        this.vendorId = UUID.randomUUID();
     }
 
     @Override
@@ -32,15 +33,19 @@ public class Vendor implements Runnable {
                 return;
             }
             try {
-                Ticket ticket = new Ticket(i, 1, 1);
+                Ticket ticket = new Ticket(UUID.randomUUID(), null, vendorId);
                 ticketPool.addTickets(ticket);
-                LOGGER.info(Thread.currentThread().getName() + " added ticket " + ticket);
+                LOGGER.info(vendorId + " added ticket " + ticket);
                 Thread.sleep(ticketReleaseRate * 1000);
             } catch (InterruptedException e) {
-                LOGGER.warning(Thread.currentThread().getName() + " interrupted while sleeping. Exiting...");
+                LOGGER.warning(vendorId + " interrupted while sleeping. Exiting...");
                 Thread.currentThread().interrupt();
                 return;
             }
         }
+    }
+
+    public UUID getVendorId() {
+        return vendorId;
     }
 }
