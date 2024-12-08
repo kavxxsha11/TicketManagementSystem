@@ -40,4 +40,16 @@ public class TicketingSystemConfig {
     public int getNumCustomers() {
         return numCustomers;
     }
+
+    @Override
+    public String toString() {
+        return "TicketingSystemConfig{" +
+                "totalTickets=" + totalTickets +
+                ", ticketReleaseRate=" + ticketReleaseRate +
+                ", customerRetrievalRate=" + customerRetrievalRate +
+                ", maxTicketCapacity=" + maxTicketCapacity +
+                ", numVendors=" + numVendors +
+                ", numCustomers=" + numCustomers +
+                '}';
+    }
 }
