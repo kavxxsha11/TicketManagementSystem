@@ -28,7 +28,7 @@ public class TicketPool {
 
         ticketQueue.add(ticket);
         notifyAll();
-        System.out.println(Thread.currentThread().getName() + ": Ticket added: " + ticketQueue.size());
+        System.out.println(Thread.currentThread().getName() + ": Ticket added: " + ticket.getTicketId());
     }
 
     /*
@@ -37,6 +37,7 @@ public class TicketPool {
     public synchronized Ticket getTicket() {
         while (ticketQueue.isEmpty()) {
             try{
+                System.out.println(Thread.currentThread().getName() + ": No tickets available. Waiting...");
                 wait();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -47,15 +48,15 @@ public class TicketPool {
 
         Ticket ticket = ticketQueue.poll();
         notifyAll();
-        System.out.println(Thread.currentThread().getName() + ": Ticket purchased : " + ticketQueue.size());
+        System.out.println(Thread.currentThread().getName() + ": Ticket purchased : " + ticket.getTicketId());
         return ticket;
     }
 
-    public int getCurrentTicketCount(){
+    public synchronized int getCurrentTicketCount(){
         return ticketQueue.size();
     }
 
-    public boolean isTicketPoolFull(){
+    public synchronized boolean isTicketPoolFull(){
         return ticketQueue.size() >= maximumCapacity;
     }
 }
