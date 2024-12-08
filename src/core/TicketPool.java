@@ -7,11 +7,6 @@ public class TicketPool {
     private final Queue<Ticket> ticketQueue;
     private final int maximumCapacity;
 
-    public TicketPool() {
-        this.maximumCapacity = 100;
-        this.ticketQueue = new LinkedList<>();
-    }
-
     public TicketPool(int maximumCapacity) {
         this.maximumCapacity = maximumCapacity;
         this.ticketQueue = new LinkedList<>();
@@ -54,5 +49,13 @@ public class TicketPool {
         notifyAll();
         System.out.println(Thread.currentThread().getName() + ": Ticket purchased : " + ticketQueue.size());
         return ticket;
+    }
+
+    public int getCurrentTicketCount(){
+        return ticketQueue.size();
+    }
+
+    public boolean isTicketPoolFull(){
+        return ticketQueue.size() >= maximumCapacity;
     }
 }
