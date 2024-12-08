@@ -1,12 +1,12 @@
 package config;
 
 public class TicketingSystemConfig {
-    private final int totalTickets;
-    private final int ticketReleaseRate;
-    private final int customerRetrievalRate;
-    private final int maxTicketCapacity;
-    private final int numVendors;
-    private final int numCustomers;
+    private int totalTickets;
+    private int ticketReleaseRate;
+    private int customerRetrievalRate;
+    private int maxTicketCapacity;
+    private int numVendors;
+    private int numCustomers;
 
     public TicketingSystemConfig(int totalTickets, int ticketReleaseRate, int customerRetrievalRate, int maxTicketCapacity, int numVendors, int numCustomers) {
         this.totalTickets = totalTickets;
