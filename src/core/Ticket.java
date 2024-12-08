@@ -3,7 +3,7 @@ package core;
 public class Ticket {
     private int ticketId; // Unique identifier for the ticket
     private String title; // Title of the ticket
-    private double price; // Price of the ticket
+    private double price;// Price of the ticket
 
     // Constructor to initialize the Ticket object
     public Ticket(int ticketId, String title, double price) {
@@ -40,10 +40,10 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "Ticket { " +
-                "ticketId = " + ticketId +
-                ", title = '" + title + '\'' +
-                ", price = " + price +
+        return " Ticket { " +
+                "TicketId = " + ticketId +
+                ", Title = '" + title + '\'' +
+                ", Price = " + price +
                 '}';
     }
 }
