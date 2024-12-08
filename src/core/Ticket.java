@@ -2,48 +2,46 @@ package core;
 
 public class Ticket {
     private int ticketId; // Unique identifier for the ticket
-    private String title; // Title of the ticket
-    private double price;// Price of the ticket
+    private int customerId;
+    private int vendorId;
 
     // Constructor to initialize the Ticket object
-    public Ticket(int ticketId, String title, double price) {
+    public Ticket(int ticketId, int customerId, int vendorId) {
         this.ticketId = ticketId;
-        this.title = title;
-        this.price = price;
+        this.customerId = customerId;
+        this.vendorId = vendorId;
     }
 
-    // Getters for ticketId, title, and price
     public int getTicketId() {
         return ticketId;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    // Setters for ticketId, price, and title
     public void setTicketId(int ticketId) {
         this.ticketId = ticketId;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
+
+    public int getVendorId() {
+        return vendorId;
+    }
+
+    public void setVendorId(int vendorId) {
+        this.vendorId = vendorId;
     }
 
     @Override
     public String toString() {
         return " Ticket { " +
                 "TicketId = " + ticketId +
-                ", Title = '" + title + '\'' +
-                ", Price = " + price +
+                ", Customer Id = '" + customerId + '\'' +
+                ", Vendor Id = " + vendorId +
                 '}';
     }
 }
