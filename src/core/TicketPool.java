@@ -12,51 +12,46 @@ public class TicketPool {
         this.ticketQueue = new LinkedList<>();
     }
 
-    /*
-    addTickets method used by Vendors to add tickets
-     */
     public synchronized void addTickets(Ticket ticket) {
         while (ticketQueue.size() >= maximumCapacity) {
             try {
+                System.out.println(Thread.currentThread().getName() + ": Pool full. Waiting to add ticket...");
                 wait();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                System.out.println("Thread interrupted while waiting to add a new ticket: " + e.getMessage());
+                System.out.println("Thread interrupted while waiting to add a ticket: " + e.getMessage());
                 return;
             }
         }
 
         ticketQueue.add(ticket);
         notifyAll();
-        System.out.println(Thread.currentThread().getName() + ": Ticket added: " + ticket.getTicketId());
+        System.out.println(Thread.currentThread().getName() + ": Added ticket with ID: " + ticket.getTicketId());
     }
 
-    /*
-    getTicket method used by Customers to buy tickets
-     */
     public synchronized Ticket getTicket() {
         while (ticketQueue.isEmpty()) {
-            try{
+            try {
                 System.out.println(Thread.currentThread().getName() + ": No tickets available. Waiting...");
                 wait();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                System.out.println("Thread interrupted while waiting for a ticket: " + e.getMessage());
+                System.out.println("Thread interrupted while waiting to get a ticket: " + e.getMessage());
                 return null;
             }
         }
 
         Ticket ticket = ticketQueue.poll();
         notifyAll();
-        System.out.println(Thread.currentThread().getName() + ": Ticket purchased : " + ticket.getTicketId());
+        System.out.println(Thread.currentThread().getName() + ": Retrieved ticket with ID: " + ticket.getTicketId());
         return ticket;
     }
 
-    public synchronized int getCurrentTicketCount(){
+    public synchronized int getCurrentTicketCount() {
         return ticketQueue.size();
     }
 
-    public synchronized boolean isTicketPoolFull(){
+    public synchronized boolean isTicketPoolFull() {
         return ticketQueue.size() >= maximumCapacity;
     }
 }
