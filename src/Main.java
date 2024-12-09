@@ -2,6 +2,7 @@ import config.TicketingSystemConfig;
 import core.TicketPool;
 import threads.Customer;
 import threads.Vendor;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -10,7 +11,7 @@ import java.util.logging.Logger;
 
 public class Main {
     private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
-    private static boolean isRunning =false;
+    private static boolean isRunning = false;
     private static final List<Thread> threads = new ArrayList<>();
     private static TicketPool ticketPool;
 
@@ -48,19 +49,15 @@ public class Main {
 
     public static TicketingSystemConfig configure(Scanner scanner) {
         LOGGER.info("Starting Configuration...\n");
-        // Get total tickets from user
         System.out.println("Enter Total Tickets: ");
         int totalTickets = getValidInput(scanner);
 
-        // Get ticket release rate from user
         System.out.println("Enter Ticket Release Rate: ");
         int ticketReleaseRate = getValidInput(scanner);
 
-        // Get customer retrieval rate from user
         System.out.println("Enter Customer Retrieval Rate: ");
         int customerRetrievalRate = getValidInput(scanner);
 
-        // Get maximum ticket capacity from user
         System.out.println("Enter Max Ticket Capacity: ");
         int maxTicketCapacity = getValidInput(scanner);
 
@@ -81,7 +78,7 @@ public class Main {
             try {
                 if (!scanner.hasNextInt()) {
                     System.out.println("Invalid input. Please enter a valid number.");
-                    scanner.next(); // Clear invalid input
+                    scanner.next();
                     continue;
                 }
 
@@ -102,7 +99,7 @@ public class Main {
 
     public static void startSystem(TicketingSystemConfig config) {
         synchronized (Main.class) {
-            if (!isRunning){
+            if (!isRunning) {
                 isRunning = true;
                 System.out.println("Starting System...");
                 LOGGER.info("Initializing System with configuration: " + config);
@@ -118,7 +115,7 @@ public class Main {
                     threads.add(customerThread);
                     customerThread.start();
                 }
-            } else{
+            } else {
                 System.out.println("System is already running.");
                 LOGGER.warning("Attempt to start system already running.");
             }
@@ -127,14 +124,14 @@ public class Main {
 
     public static void stopSystem() {
         synchronized (Main.class) {
-            if (isRunning){
+            if (isRunning) {
                 isRunning = false;
                 System.out.println("Stopping System...");
                 LOGGER.info("Initiating system shutdown...");
 
-                for (Thread thread : threads){
+                for (Thread thread : threads) {
                     thread.interrupt();
-                    try{
+                    try {
                         thread.join();
                     } catch (InterruptedException e) {
                         LOGGER.log(Level.WARNING, "Error during thread interruption", e);
@@ -144,7 +141,7 @@ public class Main {
                 threads.clear();
                 System.out.println("System shutdown completed.");
                 LOGGER.info("System shutdown completed.");
-            } else{
+            } else {
                 System.out.println("System is already stopped.");
                 LOGGER.warning("Attempt to stop system already stopped.");
             }
