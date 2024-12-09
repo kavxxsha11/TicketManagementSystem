@@ -7,7 +7,6 @@ public class Ticket {
     private UUID customerId;
     private UUID vendorId;
 
-    // Constructor to initialize the Ticket object
     public Ticket(UUID ticketId, UUID customerId, UUID vendorId) {
         this.ticketId = ticketId;
         this.customerId = customerId;
@@ -40,10 +39,10 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return " Ticket { " +
-                "TicketId = " + ticketId +
-                ", Customer Id = '" + customerId + '\'' +
-                ", Vendor Id = " + vendorId +
+        return "Ticket{" +
+                "ticketId=" + ticketId +
+                ", customerId=" + customerId +
+                ", vendorId=" + vendorId +
                 '}';
     }
 }
