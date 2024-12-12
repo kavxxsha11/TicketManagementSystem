@@ -1,160 +1,135 @@
-Real-Time Event Ticketing System
-
+Real-Time Event Ticketing System - CLI
 Overview
-
-The Real-Time Event Ticketing System is designed to manage ticketing operations efficiently through a backend service and a user-friendly frontend interface. This application offers both a Command-Line Interface (CLI) and a Graphical User Interface (GUI) using React.
-
+This Command-Line Interface (CLI) application is part of a Real-Time Event Ticketing System. It provides an interactive way to configure, start, stop, and monitor the ticketing system's backend operations.
 Features
 
-Configure ticketing system parameters.
-
-Start and stop ticketing operations dynamically.
-
-Monitor available tickets in real-time.
-
-Access the system through CLI or GUI.
-
-Setup Instructions
+System Configuration
+Start/Stop Ticketing Operations
+Check System Status
+Interactive Menu-Driven Interface
 
 Prerequisites
 
-Backend Requirements:
+Java Development Kit (JDK) 11 or higher
+Maven or Gradle (for dependency management)
 
-Java 21 or higher
+Setup and Installation
 
-Maven (for dependency management)
+Clone the repository
+Navigate to the CLI project directory
+Ensure all dependencies are installed
+Compile the project
 
-Frontend Requirements:
+Available Commands
 
-Node.js (version 18 or higher)
+configure: Set system parameters (total tickets, release rates, etc.)
+start: Begin ticketing operations
+stop: Halt ticketing operations
+status: Check current system status
+exit: Close the CLI application
 
-npm or Yarn
+Configuration Parameters
 
-Backend Setup
+Total Tickets
+Ticket Release Rate
+Customer Retrieval Rate
+Maximum Ticket Capacity
 
-Clone the repository:
+Dependencies
 
-git clone https://github.com/your-repo-url/RealTimeEventTicketingSystem.git
-cd RealTimeEventTicketingSystem-Backend
+Java Networking (HttpURLConnection)
+JSON Configuration Management
 
-Build the project:
+Notes
 
-mvn clean install
-
-Run the backend server:
-
-java -jar target/RealTimeEventTicketingSystem-Backend.jar
-
-The backend will start on http://localhost:8080.
-
-Frontend Setup
-
-Navigate to the frontend directory:
-
-cd event-ticket-frontend
-
-Install dependencies:
-
-npm install
-
-Start the frontend server:
-
-npm run dev
-
-The frontend will start on http://localhost:5173.
-
-CLI Usage
-
-Starting the CLI
-
-Run the CLI application using:
-
-java -jar RealTimeEventTicketingSystem-Backend.jar
-
-CLI Commands
-
-Configure the system:
-
-1
-
-Follow the prompts to enter ticket parameters (e.g., total tickets, release rate, etc.).
-
-Start ticketing operations:
-
-2
-
-This will start the backend system and begin ticket processing.
-
-Stop ticketing operations:
-
-3
-
-Stops the backend system gracefully.
-
-Check system status:
-
-4
-
-Displays whether the system is running or stopped.
-
-Exit the CLI:
-
-5
-
-Stops the backend (if running) and exits the CLI.
-
-GUI Usage
-
-Accessing the GUI
-
-Open your browser and navigate to http://localhost:5173.
-
-GUI Components
-
-Configuration Form:
-
-Enter ticketing parameters and start the system.
-
-Control Panel:
-
-Start or stop the system dynamically.
-
-Ticket Display:
-
-View the number of tickets available in real-time.
-
-Log Display:
-
-Monitor system activity logs.
+Ensure the backend Spring Boot application is running
+The CLI communicates with the backend via HTTP endpoints
+Configuration is persistent between sessions
 
 Troubleshooting
 
-Common Issues
+Verify backend service is running on localhost:8080
+Check network connectivity
+Ensure proper Java version is installed
 
-Backend not starting:
 
-Ensure Java 21+ is installed and properly configured in your system PATH.
+Real-Time Event Ticketing System - Backend
+Overview
+A Spring Boot-based backend for a Real-Time Event Ticketing System, implementing a multi-threaded ticket management platform with configurable system parameters.
+Technical Stack
 
-Check if the port 8080 is free or in use by another application.
+Java 11+
+Spring Boot
+Multi-threading
+Jackson for JSON Configuration
+Lombok for simplified model classes
 
-Frontend not starting:
+System Architecture
 
-Ensure Node.js and npm are installed.
+Vendor Threads: Generate tickets
+Customer Threads: Purchase tickets
+Ticket Pool: Centralized ticket management
+Configuration Management: Dynamic system settings
 
-Run npm install before starting the frontend.
+Key Components
 
-CORS Errors:
+Configure: System configuration management
+RequestHandler: REST API endpoints
+TicketService: Core business logic
+TicketPool: Synchronized ticket management
+VendorThread & CustomerThread: Concurrent ticket operations
 
-Ensure the backend allows requests from http://localhost:5173 using @CrossOrigin annotations.
+Prerequisites
 
-Real-time data not updating:
+Java Development Kit (JDK) 11+
+Maven
+Spring Boot
 
-Verify that the /api/system/tickets endpoint is reachable.
+Configuration
+System can be configured through:
 
-Check browser console logs for errors.
+CLI interface
+Configuration JSON file
+Runtime configuration endpoints
 
-Logs and Debugging
+Configuration Parameters
 
-Backend logs are printed in the terminal where the server is running.
+Total Tickets
+Ticket Release Rate
+Customer Retrieval Rate
+Maximum Ticket Capacity
 
-Use browser developer tools for frontend debugging.
+API Endpoints
+
+POST /api/system/configure: Set system parameters
+POST /api/system/start: Start ticket system
+POST /api/system/stop: Stop ticket system
+GET /api/system/status: Check system status
+GET /api/system/tickets: Get available tickets
+
+Building the Project
+bashCopy./mvnw clean install
+Running the Application
+bashCopy./mvnw spring-boot:run
+Deployment
+
+Runs on localhost:8080
+Cross-Origin configured for http://localhost:5173
+
+Thread Safety
+
+Synchronized methods in TicketPool
+Concurrent thread management
+Safe ticket generation and purchasing
+
+Logging
+
+Console logging for system events
+Tracks ticket pool status
+Monitors thread activities
+
+Error Handling
+
+Graceful thread interruption
+Configuration file error management
+Runtime configuration validation
