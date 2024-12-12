@@ -7,7 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.util.Scanner;
 
-import com.kaveesha.backend.config.Configure;
+import com.kaveesha.backend.configuration.Configure;
 
 public class Main {
 

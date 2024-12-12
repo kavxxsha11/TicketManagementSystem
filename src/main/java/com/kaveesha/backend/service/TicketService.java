@@ -1,6 +1,6 @@
 package com.kaveesha.backend.service;
 
-import com.kaveesha.backend.config.Configure;
+import com.kaveesha.backend.configuration.Configure;
 import com.kaveesha.backend.thread.CustomerThread;
 import com.kaveesha.backend.thread.VendorThread;
 import com.kaveesha.backend.thread.TicketPool;
@@ -44,7 +44,7 @@ public class TicketService {
         }
 
         System.out.println("System started with " + config.getTicketReleaseRate() + " vendor(s) and "
-                           + config.getCustomerRetrievalRate() + " customer(s).");
+                        + config.getCustomerRetrievalRate() + " customer(s).");
     }
 
     // Stop the ticketing system
@@ -64,6 +64,6 @@ public class TicketService {
     }
 
     public int getAvailableTickets() {
-        return ticketPool.getTicketCount();  // Assuming TicketPool has this method
+        return ticketPool.getTicketCount(); // Return the number of available tickets
     }
 }

@@ -1,4 +1,4 @@
-package com.kaveesha.backend.config;
+package com.kaveesha.backend.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;

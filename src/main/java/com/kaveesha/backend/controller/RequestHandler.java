@@ -1,6 +1,6 @@
 package com.kaveesha.backend.controller;
 
-import com.kaveesha.backend.config.Configure;
+import com.kaveesha.backend.configuration.Configure;
 import com.kaveesha.backend.service.TicketService;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/system") // Map all requests starting with /api/system
 @CrossOrigin(origins = "http://localhost:5173") // Allow frontend requests from http://localhost:5173
-public class Handler {
+public class RequestHandler {
 
     private final TicketService ticketService; // Service to handle ticket-related logic
 
     /**
      * Constructor to initialize the TicketService.
      */
-    public Handler(TicketService ticketService) {
+    public RequestHandler(TicketService ticketService) {
         this.ticketService = ticketService;
     }
 

@@ -3,7 +3,7 @@ package com.kaveesha.backend.thread;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import com.kaveesha.backend.config.Configure;
+import com.kaveesha.backend.configuration.Configure;
 
 // The TicketPool class manages a shared pool of tickets. It simulates a system where
 // vendors add tickets to the pool, and customers can purchase them until the pool is full or empty.
